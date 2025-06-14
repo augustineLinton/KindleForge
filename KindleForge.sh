@@ -1,7 +1,6 @@
 #!/bin/sh
 # Name: KindleForge
 # Author: Penguins
-# UseHooks
 # DontUseFBInk
 
 # IllusionUtild v2
