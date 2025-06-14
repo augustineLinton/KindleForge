@@ -20,18 +20,18 @@ BINARY="$SOURCE_DIR/.illusion/UtildSF"
 
 #Run UTILD
 if [ -e /lib/ld-linux-armhf.so.3 ]; then
-    rm -f /var/local/kmc/UtildSF
+    rm -f "$SOURCE_DIR/.illusion/UtildSF"
 
     chmod +x /var/local/kmc/UtildHF
     /var/local/kmc/UtildHF
 else
-    rm -f /var/local/kmc/UtildHF
+    rm -f "$SOURCE_DIR/.illusion/UtildHF"
 
     chmod +x /var/local/kmc/UtildSF
     /var/local/kmc/UtildSF
 fi
 
-#Install KPM 
+#Install KPM If Not Already
 if [ ! -x /usr/local/bin/kpm ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/gingrspacecadet/kpm/main/install-kpm.sh)"
   if [ $? -ne 0 ]; then
