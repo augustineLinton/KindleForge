@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Block Amazon",
+        "description": "Block Amazon Domains In /etc/hosts",
+        "author": "Mitchell Urgero",
+        "kpm": "blockamazon"
+    },
+    {
+        "name": "Gnome Games Suite",
+        "description": "A Gnome Games Port For Kindle",
+        "author": "CrazyElectron",
+        "kpm": "gnomegames"
+    },
+    {
+        "name": "Hello",
+        "description": "An Example KPM Package",
+        "author": "Gingrspacecadet",
+        "kpm": "hello"
+    },
+    {
+        "name": "Hyprpad",
+        "description": "Kindle Simple Text Editor",
+        "author": "Gingrspacecadet",
+        "kpm": "hyprpad"
+    },
+    {
+        "name": "KAnki",
+        "description": "Universal Flashcard App For Kindle",
+        "author": "Kurizu (Crizmo)",
+        "kpm": "kanki"
+    },
+    {
+        "name": "KindleFetch",
+        "description": "Download Books From Anna's Archive",
+        "author": "Justrals",
+        "kpm": "kindlefetch"
+    },
+    {
+        "name": "KWordle",
+        "description": "Wordle Clone For Kindle",
+        "author": "Kurizu (Crizmo)",
+        "kpm": "kwordle"
+    },
+    {
+        "name": "KPM GUI",
+        "description": "An Alternative KUAL GUI For KPM",
+        "author": "Gingrspacecadet",
+        "kpm": "kpmgui"
+    },
+    {
+        "name": "CMSG",
+        "description": "?",
+        "author": "?",
+        "kpm": "cmsg"
+    },
+    {
+        "name": "Make",
+        "description": "Make Utility For Kindle",
+        "author": "Stuart Feldman",
+        "kpm": "make"
+    },
+    {
+        "name": "Musl",
+        "description": "Musl C Library For Kindle",
+        "author": "Ake Svensson",
+        "kpm": "musl"
+    }
+]
