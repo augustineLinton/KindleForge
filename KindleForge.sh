@@ -11,12 +11,25 @@ TARGET_DIR="/var/local/mesquite/KindleForge"
 DB="/var/local/appreg.db"
 APP_ID="xyz.penguins184.kindleforge"
 
-B="$SOURCE_DIR/.illusion"; U="/var/local/kmc"
-[ -e /lib/ld-linux-armhf.so.3 ] && X=UtildHF || X=UtildSF
-[ -e "$B/$X" ] && cp "$B/$X" "$U" && rm "$B/$X"
-chmod +x "$U/$X" && "$U/$X"
-rm -f "$B/${X/UtildHF/UtildSF}" "$B/${X/UtildSF/UtildHF}"
+#Copy UTILD
+BINARY="$SOURCE_DIR/.illusion/UtildSF"
+[ -e /lib/ld-linux-armhf.so.3 ] && BINARY="$SOURCE_DIR/.illusion/UtildHF"
+[ -e "$BINARY" ] && cp "$BINARY" /var/local/kmc && rm "$BINARY"
 
+#Run UTILD
+if [ -e /lib/ld-linux-armhf.so.3 ]; then
+    rm -f /var/local/kmc/UtildSF #Just In Case!
+
+    chmod +x /var/local/kmc/UtildHF
+    /var/local/kmc/UtildHF
+else
+    rm -f /var/local/kmc/UtildHF 
+
+    chmod +x /var/local/kmc/UtildSF
+    /var/local/kmc/UtildSF
+fi
+
+#Install KPM If Not Already
 if [ ! -x /usr/local/bin/kpm ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/gingrspacecadet/kpm/main/install-kpm.sh)"
   if [ $? -ne 0 ]; then
@@ -25,6 +38,7 @@ if [ ! -x /usr/local/bin/kpm ]; then
   fi
 fi
 
+#Copy App
 if [ -d "$SOURCE_DIR" ]; then
   if [ -d "$TARGET_DIR" ]; then
         rm -rf "$TARGET_DIR"
@@ -34,6 +48,7 @@ if [ -d "$SOURCE_DIR" ]; then
     exit 1
 fi
 
+#Register App
 sqlite3 "$DB" <<EOF
 INSERT OR IGNORE INTO interfaces(interface) VALUES('application');
 INSERT OR IGNORE INTO handlerIds(handlerId) VALUES('$APP_ID');
@@ -47,5 +62,6 @@ EOF
 
 echo Registered $APP_ID, You May Now Launch It With LIPC.
 
+#Run App
 sleep 2
 nohup lipc-set-prop com.lab126.appmgrd start app://$APP_ID >/dev/null 2>&1 &
