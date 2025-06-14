@@ -53,9 +53,7 @@ function load() {
     return html;
   };
 
-
-  
-  function render() {
+function render() {
     var list = document.getElementById("apps");
     var html = "";
     for (var i = 0; i < apps.length; i++) {
