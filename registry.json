@@ -49,8 +49,8 @@
     },
     {
         "name": "CMSG",
-        "description": "?",
-        "author": "?",
+        "description": "WebSocket Messaging Service",
+        "author": "Gingrspacecadet",
         "kpm": "cmsg"
     },
     {
