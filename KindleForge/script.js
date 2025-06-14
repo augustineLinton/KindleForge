@@ -1,3 +1,4 @@
+var kindle = window.kindle || top.kindle;
 var apps = null;
 
 function _fetch(url) {
