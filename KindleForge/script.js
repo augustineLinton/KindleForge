@@ -67,7 +67,9 @@ function render() {
       (function(index) {
         install[index].addEventListener("click", function() {
           //Trigger Installation Code
+          install[index].innerHTML = icons.book + "Installing...";
           kindle.messaging.sendStringMessage("com.kindlemodding.utild", "runCMD", "kpm -S " + apps[index].kpm);
+          install[index].innerHTML = icons.book + "Installed " + apps[index].name + "!";
         });
       })(i);
     }
