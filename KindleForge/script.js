@@ -71,7 +71,7 @@ function render(installed) {
 
   function buttonHtml(name, isInstalled) {
     var icon = isInstalled ? icons.x : icons.download;
-    var text = isInstalled ? "Uninstall" : "Install";
+    var text = isInstalled ? " Uninstall Application" : " Install Application";
     return (
       "<button class='install-button' " +
       "data-name='" +
@@ -87,14 +87,11 @@ function render(installed) {
   }
 
   var container = document.getElementById("apps"),
-    html = "",
-    i,
-    app,
-    isInstalled;
+    html = "";
 
-  for (i = 0; i < apps.length; i++) {
-    app = apps[i];
-    isInstalled = installed.indexOf(app.name) !== -1;
+  for (var i = 0; i < apps.length; i++) {
+    var app = apps[i],
+      isInstalled = installed.indexOf(app.name) !== -1;
     html +=
       "<article class='card'>" +
       "<div class='header'>" +
@@ -116,49 +113,47 @@ function render(installed) {
 
   container.innerHTML = html;
 
-  var buttons = container.querySelectorAll(".install-button"),
-    j;
-
-  for (j = 0; j < buttons.length; j++) {
+  var buttons = container.querySelectorAll(".install-button");
+  for (var j = 0; j < buttons.length; j++) {
     (function (idx) {
       buttons[idx].addEventListener("click", function () {
         var btn = this;
         var name = btn.getAttribute("data-name");
-        var installedFlag = btn.getAttribute("data-installed") === "true";
+        var wasInstalled = btn.getAttribute("data-installed") === "true";
 
         if (lock) {
           btn.innerHTML =
             icons.x +
-            (installedFlag
-              ? "Another Uninstall In Progress!"
-              : "Another Download In Progress!");
+            (wasInstalled
+              ? " Another Uninstall In Progress!"
+              : " Another Download In Progress!");
           setTimeout(function () {
             btn.innerHTML =
-              (installedFlag ? icons.x : icons.download) +
-              (installedFlag ? "Uninstall" : "Install");
+              (wasInstalled ? icons.x : icons.download) +
+              (wasInstalled ? " Uninstall Application" : " Install Application");
           }, 3000);
           return;
         }
         lock = true;
 
-        var cmd = installedFlag ? "uninstall" : "install";
-        var script =
-          "https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" +
-          name +
-          "/" +
-          cmd +
-          ".sh";
+        var action = wasInstalled ? "uninstall" : "install",
+          scriptUrl =
+            "https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" +
+            name +
+            "/" +
+            action +
+            ".sh";
 
         btn.innerHTML =
           icons.progress +
-          (installedFlag ? "Uninstalling " : "Installing ") +
+          (wasInstalled ? " Uninstalling " : " Installing ") +
           name +
           "...";
 
         (window.kindle || top.kindle).messaging.sendStringMessage(
           "com.kindlemodding.utild",
           "runCMD",
-          "curl " + script + " | sh"
+          "curl " + scriptUrl + " | sh"
         );
 
         var start = Date.now(),
@@ -168,7 +163,9 @@ function render(installed) {
               lock = false;
               btn.innerHTML =
                 icons.x +
-                (installedFlag ? "Failed to Uninstall " : "Failed to Install ") +
+                (wasInstalled
+                  ? " Failed to Uninstall "
+                  : " Failed to Install ") +
                 name +
                 "!";
               setTimeout(function () {
@@ -180,7 +177,7 @@ function render(installed) {
               "file:///var/local/mesquite/KindleForge/assets/packages.list"
             ).then(function (data) {
               var present = data.indexOf(name) !== -1;
-              if ((!installedFlag && present) || (installedFlag && !present)) {
+              if ((!wasInstalled && present) || (wasInstalled && !present)) {
                 clearInterval(pollId);
                 lock = false;
                 window.location.reload();
