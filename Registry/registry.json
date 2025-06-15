@@ -1,0 +1,29 @@
+[
+    {
+        "name": "KOReader",
+        "description": "An E-Book Reader Application",
+        "author": "Hans-Werner",
+        "remote": {
+            "install": "",
+            "uninstall": ""
+        }
+    },
+    {
+        "name": "kTerm",
+        "description": "",
+        "author": "",
+        "remote": {
+            "install": "",
+            "uninstall": ""
+        }
+    },
+    {
+        "name": "KindleFetch",
+        "description": "",
+        "author": "",
+        "remote": {
+            "install": "",
+            "uninstall": ""
+        }
+    }
+]
