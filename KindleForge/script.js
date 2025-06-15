@@ -1,4 +1,3 @@
-var kindle = window.kindle || top.kindle;
 var apps = null;
 
 function _fetch(url) {
@@ -67,11 +66,13 @@ function render() {
       (function(index) {
         install[index].addEventListener("click", function() {
           //Trigger Installation Code
-          window.kindle.messaging.sendStringMessage("com.kindlemodding.utild", "runCMD", "eips 1 25 'Installing " + apps[index].name + " ...'"); //The Kindle Variable Doesn't Work..?
-          window.kindle.messaging.sendStringMessage("com.kindlemodding.utild", "runCMD", "sh -c '$(curl -fsSL https://raw.githubusercontent.com/gingrspacecadet/kpm/main/install-kpm.sh)'; kpm -S " + apps[index].kpm); //Update Fixes CURL (23)
+          var kindle = window.kindle || top.kindle;
+
+          kindle.messaging.sendStringMessage("com.kindlemodding.utild", "runCMD", "eips 1 25 'Installing " + apps[index].name + " ...'");
+          kindle.messaging.sendStringMessage("com.kindlemodding.utild", "runCMD", "curl https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" + apps[index].name + "/install.sh | sh"); //Install Button Functionality
         });
       })(i);
-    }
+    };
   };
 
   render();
