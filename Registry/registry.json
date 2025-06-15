@@ -2,28 +2,16 @@
     {
         "name": "KOReader",
         "description": "An E-Book Reader Application",
-        "author": "Hans-Werner",
-        "remote": {
-            "install": "",
-            "uninstall": ""
-        }
+        "author": "Hans-Werner"
     },
     {
         "name": "kTerm",
-        "description": "",
-        "author": "",
-        "remote": {
-            "install": "",
-            "uninstall": ""
-        }
+        "description": "GTK+ Terminal Emulator for Kindle",
+        "author": "Bartek Fabiszewski"
     },
     {
         "name": "KindleFetch",
-        "description": "",
-        "author": "",
-        "remote": {
-            "install": "",
-            "uninstall": ""
-        }
+        "description": "Justrals",
+        "author": "Download Books From Anna's Archive"
     }
 ]

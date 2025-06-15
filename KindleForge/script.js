@@ -78,6 +78,6 @@ function render() {
 };  
 
 document.addEventListener("DOMContentLoaded", function() {
-    _fetch("https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/registry.json"); //Fetch App Registry
+    _fetch("https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/registry.json"); //Fetch App Registry
     document.getElementById("status").innerHTML = "JS Working!";
 });
