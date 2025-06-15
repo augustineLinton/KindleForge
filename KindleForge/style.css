@@ -131,7 +131,14 @@ footer {
 }
 
 button {
-    padding: 10px 0px 10px 0px;
+  margin: 5px 3px 5px;
+  padding: 14px 30px;
+  border-radius: 5px;
+  border: 1px solid #d3d6da;
+  background-color: #d3d6da;
+  font-size: 24px;
+  font-family: "Inter";
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

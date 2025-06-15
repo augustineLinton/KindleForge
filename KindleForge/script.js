@@ -1,3 +1,10 @@
+/*
+  KindleForge
+  "Do not ask me what is here, for I have no idea" -penguins184
+
+  06/2025
+*/
+
 var apps = null;
 var lock = false;
 
@@ -42,7 +49,6 @@ function _file(url) {
 function init() {
   _file("file:///var/local/mesquite/KindleForge/assets/packages.list").then(
     function (data) {
-      // split + remove any empty strings
       var installed = data.split(/\r?\n/).filter(function (ln) {
         return ln.trim() !== "";
       });
@@ -131,7 +137,6 @@ function render(installed) {
         var name = btn.getAttribute("data-name");
         var wasInst = btn.getAttribute("data-installed") === "true";
 
-        // disable immediately to stop double-click
         btn.disabled = true;
 
         if (lock) {
