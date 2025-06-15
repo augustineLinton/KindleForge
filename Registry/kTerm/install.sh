@@ -19,4 +19,11 @@ else
 fi
 
 echo "[KindleForge] kTerm Installation Complete."
+
+# Packages.LIST
+FILE="/var/local/mesquite/KindleForge/assets/packages.list"
+STRING="kTerm"
+
+grep -qxF "$STRING" "$FILE" || echo "$STRING" >> "$FILE"
+
 exit 0

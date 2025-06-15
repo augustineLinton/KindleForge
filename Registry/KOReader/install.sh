@@ -27,5 +27,12 @@ curl $OTA_SERVER$OTA_FILENAME -s --output /tmp/KOReaderInstall.tar.gz
 tar -xf /tmp/KOReaderInstall.tar.gz -C /mnt/us/
 
 echo "[KindleForge] KOReader Installation Complete."
+
+# Packages.LIST
+FILE="/var/local/mesquite/KindleForge/assets/packages.list"
+STRING="KOReader"
+
+grep -qxF "$STRING" "$FILE" || echo "$STRING" >> "$FILE"
+
 exit 0
 
