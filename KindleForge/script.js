@@ -30,6 +30,7 @@ function _file(url) {
             ""
           )
           .replace("</pre></body>", "")
+          .replace("<head></head><body></body>", "")
       );
     });
     setTimeout(function () {
@@ -41,7 +42,10 @@ function _file(url) {
 function init() {
   _file("file:///var/local/mesquite/KindleForge/assets/packages.list").then(
     function (data) {
-      var installed = data.split(/\r?\n/);
+      // split + remove any empty strings
+      var installed = data.split(/\r?\n/).filter(function (ln) {
+        return ln.trim() !== "";
+      });
       render(installed);
     }
   );
@@ -69,49 +73,55 @@ function render(installed) {
       "</svg>"
   };
 
-  function buttonHtml(name, isInstalled) {
-    var icon = isInstalled ? icons.x : icons.download;
-    var text = isInstalled ? " Uninstall Application" : " Install Application";
-    return (
-      "<button class='install-button' " +
-      "data-name='" +
-      name +
-      "' " +
-      "data-installed='" +
-      (isInstalled ? "true" : "false") +
-      "'>" +
-      icon +
-      text +
-      "</button>"
-    );
-  }
+  var container = document.getElementById("apps");
+  while (container.firstChild) container.removeChild(container.firstChild);
 
-  var container = document.getElementById("apps"),
-    html = "";
+  function makeButton(name, isInst) {
+    var btn = document.createElement("button");
+    btn.className = "install-button";
+    btn.setAttribute("data-name", name);
+    btn.setAttribute("data-installed", isInst ? "true" : "false");
+    btn.innerHTML =
+      (isInst ? icons.x : icons.download) +
+      (isInst ? " Uninstall Application" : " Install Application");
+    return btn;
+  }
 
   for (var i = 0; i < apps.length; i++) {
-    var app = apps[i],
-      isInstalled = installed.indexOf(app.name) !== -1;
-    html +=
-      "<article class='card'>" +
-      "<div class='header'>" +
-      "<div class='title-box'>" +
-      "<h2 class='title'>" +
-      app.name +
-      "</h2>" +
-      "<p class='author'>by " +
-      app.author +
-      "</p>" +
-      "</div>" +
-      "</div>" +
-      "<p class='description'>" +
-      app.description +
-      "</p>" +
-      buttonHtml(app.name, isInstalled) +
-      "</article>";
-  }
+    var app = apps[i];
+    var isInst = installed.indexOf(app.name) !== -1;
 
-  container.innerHTML = html;
+    var card = document.createElement("article");
+    card.className = "card";
+
+    var header = document.createElement("div");
+    header.className = "header";
+    var titleBox = document.createElement("div");
+    titleBox.className = "title-box";
+
+    var h2 = document.createElement("h2");
+    h2.className = "title";
+    h2.textContent = app.name;
+
+    var pAuth = document.createElement("p");
+    pAuth.className = "author";
+    pAuth.textContent = "by " + app.author;
+
+    titleBox.appendChild(h2);
+    titleBox.appendChild(pAuth);
+    header.appendChild(titleBox);
+
+    var pDesc = document.createElement("p");
+    pDesc.className = "description";
+    pDesc.textContent = app.description;
+
+    var btn = makeButton(app.name, isInst);
+
+    card.appendChild(header);
+    card.appendChild(pDesc);
+    card.appendChild(btn);
+    container.appendChild(card);
+  }
 
   var buttons = container.querySelectorAll(".install-button");
   for (var j = 0; j < buttons.length; j++) {
@@ -119,34 +129,40 @@ function render(installed) {
       buttons[idx].addEventListener("click", function () {
         var btn = this;
         var name = btn.getAttribute("data-name");
-        var wasInstalled = btn.getAttribute("data-installed") === "true";
+        var wasInst = btn.getAttribute("data-installed") === "true";
+
+        // disable immediately to stop double-click
+        btn.disabled = true;
 
         if (lock) {
           btn.innerHTML =
             icons.x +
-            (wasInstalled
+            (wasInst
               ? " Another Uninstall In Progress!"
               : " Another Download In Progress!");
           setTimeout(function () {
+            btn.disabled = false;
             btn.innerHTML =
-              (wasInstalled ? icons.x : icons.download) +
-              (wasInstalled ? " Uninstall Application" : " Install Application");
+              (wasInst ? icons.x : icons.download) +
+              (wasInst
+                ? " Uninstall Application"
+                : " Install Application");
           }, 3000);
           return;
         }
         lock = true;
 
-        var action = wasInstalled ? "uninstall" : "install",
-          scriptUrl =
-            "https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" +
-            name +
-            "/" +
-            action +
-            ".sh";
+        var action = wasInst ? "uninstall" : "install";
+        var scriptUrl =
+          "https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" +
+          name +
+          "/" +
+          action +
+          ".sh";
 
         btn.innerHTML =
           icons.progress +
-          (wasInstalled ? " Uninstalling " : " Installing ") +
+          (wasInst ? " Uninstalling " : " Installing ") +
           name +
           "...";
 
@@ -156,34 +172,35 @@ function render(installed) {
           "curl " + scriptUrl + " | sh"
         );
 
-        var start = Date.now(),
-          pollId = setInterval(function () {
-            if (Date.now() - start >= 30000) {
+        var start = Date.now();
+        var pollId = setInterval(function () {
+          if (Date.now() - start >= 30000) {
+            clearInterval(pollId);
+            lock = false;
+            btn.disabled = false;
+            btn.innerHTML =
+              icons.x +
+              (wasInst
+                ? " Failed to Uninstall "
+                : " Failed to Install ") +
+              name +
+              "!";
+            setTimeout(function () {
+              window.location.reload();
+            }, 5000);
+            return;
+          }
+          _file(
+            "file:///var/local/mesquite/KindleForge/assets/packages.list"
+          ).then(function (data) {
+            var present = data.indexOf(name) !== -1;
+            if ((!wasInst && present) || (wasInst && !present)) {
               clearInterval(pollId);
               lock = false;
-              btn.innerHTML =
-                icons.x +
-                (wasInstalled
-                  ? " Failed to Uninstall "
-                  : " Failed to Install ") +
-                name +
-                "!";
-              setTimeout(function () {
-                window.location.reload();
-              }, 5000);
-              return;
+              window.location.reload();
             }
-            _file(
-              "file:///var/local/mesquite/KindleForge/assets/packages.list"
-            ).then(function (data) {
-              var present = data.indexOf(name) !== -1;
-              if ((!wasInstalled && present) || (wasInstalled && !present)) {
-                clearInterval(pollId);
-                lock = false;
-                window.location.reload();
-              }
-            });
-          }, 500);
+          });
+        }, 500);
       });
     })(j);
   }
