@@ -18,5 +18,10 @@
         "name": "KPM",
         "description": "Kindle Package Manager",
         "author": "Gingrspacecadet"
+    },
+    {
+        "name": "GnomeGames",
+        "description": "Gnome Games Suite For Kindle",
+        "author": "CrazyElectron"
     }
 ]
