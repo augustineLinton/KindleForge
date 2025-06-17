@@ -8,15 +8,19 @@
 var apps = null;
 var lock = false;
 
-function _fetch(url) {
+function _fetch(url, cb) {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      try {
-        apps = JSON.parse(xhr.responseText);
-        init();
-      } catch (e) {}
+      if (typeof cb === "function") {
+        cb(xhr.responseText);
+      } else {
+        try {
+          apps = JSON.parse(xhr.responseText);
+          init();
+        } catch (e) {}
+      }
     }
   };
   xhr.send();
@@ -93,6 +97,21 @@ function render(installed) {
     return btn;
   }
 
+  // Helper to fetch download count for a package
+  function fetchDownloadCount(pkgName, cb) {
+    _fetch(
+      "https://kindleforge.gingr.workers.dev/count?name=" + encodeURIComponent(pkgName),
+      function (resp) {
+        try {
+          var data = JSON.parse(resp);
+          cb(data.count || 0);
+        } catch (e) {
+          cb(0);
+        }
+      }
+    );
+  }
+
   for (var i = 0; i < apps.length; i++) {
     var app = apps[i];
     var isInst = installed.indexOf(app.name) !== -1;
@@ -120,6 +139,16 @@ function render(installed) {
     var pDesc = document.createElement("p");
     pDesc.className = "description";
     pDesc.textContent = app.description;
+
+    // Download count element
+    var pCount = document.createElement("p");
+    pCount.className = "download-count";
+    pCount.textContent = "Downloads: ...";
+    card.appendChild(pCount);
+    // Fetch and update count
+    fetchDownloadCount(app.name, function(count) {
+      pCount.textContent = "Downloads: " + count;
+    });
 
     var btn = makeButton(app.name, isInst);
 
