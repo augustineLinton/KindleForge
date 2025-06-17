@@ -5,6 +5,57 @@
   06/2025
 */
 
+function update() {
+  var chromebar = {
+    "appId": "xyz.penguins184.kindleforge",
+    "topNavBar": {
+      "template": "title",
+      "title": "App Store",
+      "buttons": [
+        {
+          "id": "KPP_MORE",
+          "state": "enabled",
+          "handling": "system"
+        },
+        {
+          "id": "KPP_CLOSE",
+          "state": "enabled",
+          "handling": "system"
+        }
+      ],
+    },
+    "systemMenu": {
+      "clientParams": {
+        "profile": {
+          "name": "default",
+          "items": [
+            {
+              "id": "KFORGE_RELOAD",
+              "state": "enabled",
+              "handling": "notifyApp",
+              "label": "Reload",
+              "position": 0
+            }
+          ],
+          "selectionMode": "none",
+          "closeOnUse": true
+        }
+      }
+    }
+  };
+  window.kindle.messaging.sendMessage("com.lab126.chromebar", "configureChrome", chromebar);
+};
+
+window.kindle.appmgr.ongo = function(ctx) {
+  update();
+  window.kindle.messaging.receiveMessage("systemMenuItemSelected", function(type, id) {
+    switch(id) {
+      case "KFORGE_RELOAD":
+        window.location.reload();
+    };
+  });
+};
+
 var apps = null;
 var lock = false;
 
@@ -139,14 +190,15 @@ function render(installed) {
     pDesc.className = "description";
     pDesc.textContent = app.description;
 
-    var pCount = document.createElement("p");
-    pCount.className = "download-count";
-    pCount.textContent = "Downloads: ...";
-    card.appendChild(pCount);
-
+    /*
+      var pCount = document.createElement("p");
+      pCount.className = "download-count";
+      pCount.textContent = "Downloads: ...";
+      card.appendChild(pCount);
     fetchDownloadCount(app.name, function(count) {
       pCount.textContent = "Downloads: " + count;
     });
+    */
 
     var btn = makeButton(app.name, isInst);
 
