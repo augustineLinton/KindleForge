@@ -97,7 +97,6 @@ function render(installed) {
     return btn;
   }
 
-  // Helper to fetch download count for a package
   function fetchDownloadCount(pkgName, cb) {
     _fetch(
       "https://kindleforge.gingr.workers.dev/count?name=" + encodeURIComponent(pkgName),
@@ -140,12 +139,11 @@ function render(installed) {
     pDesc.className = "description";
     pDesc.textContent = app.description;
 
-    // Download count element
     var pCount = document.createElement("p");
     pCount.className = "download-count";
     pCount.textContent = "Downloads: ...";
     card.appendChild(pCount);
-    // Fetch and update count
+
     fetchDownloadCount(app.name, function(count) {
       pCount.textContent = "Downloads: " + count;
     });
