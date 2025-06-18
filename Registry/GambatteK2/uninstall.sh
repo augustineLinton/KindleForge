@@ -2,7 +2,7 @@
 
 echo "[KindleForge] Uninstalling GambatteK2..."
 
-rm -fr /mnt/us/extensions/GambatteK2
+rm -rf /mnt/us/extensions/gambatte-k2
 rm /mnt/us/documents/shortcut_gambatte-k2.sh
 
 echo "[KindleForge] GambatteK2 Removal Complete."

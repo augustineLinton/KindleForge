@@ -2,7 +2,7 @@
 
 echo "[KindleForge] Uninstalling GnomeGames..."
 
-rm -fr /mnt/us/extensions/GnomeGames
+rm -rf /mnt/us/extensions/GnomeGames
 rm /mnt/us/documents/shortcut_gnomechess.sh
 rm /mnt/us/documents/shortcut_gnomine.sh
 
