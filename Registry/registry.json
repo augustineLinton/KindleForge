@@ -23,5 +23,10 @@
         "name": "GnomeGames",
         "description": "Gnome Games Suite For Kindle",
         "author": "CrazyElectron"
+    },
+    {
+        "name": "GambatteK2",
+        "description": "Gameboy Emulator For Kindle",
+        "author": "CrazyElectron"
     }
 ]
