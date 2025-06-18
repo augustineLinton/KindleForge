@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling GnomeGames..."
 
 rm -rf /mnt/us/extensions/GnomeGames

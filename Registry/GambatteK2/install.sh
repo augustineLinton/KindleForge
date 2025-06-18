@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Installing GambatteK2..."
 
 # Download + Extract

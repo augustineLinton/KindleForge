@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling KindleFetch..."
 
 rm -rf /mnt/us/extensions/kindlefetch

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Installing KindleFetch..."
 
 curl https://justrals.github.io/KindleFetch/install.sh | sh 

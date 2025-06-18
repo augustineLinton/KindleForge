@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Installing KPM..."
 
 curl https://raw.githubusercontent.com/gingrspacecadet/kpm/main/install-kpm.sh | sh 

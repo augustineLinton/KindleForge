@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling KOReader..."
 
 rm -rf /mnt/us/extensions/koreader

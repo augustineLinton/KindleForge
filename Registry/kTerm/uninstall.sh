@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling kTerm..."
 
 rm -rf /mnt/us/extensions/kterm

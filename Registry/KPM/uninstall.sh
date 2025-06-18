@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling KPM..."
 
 mntroot rw

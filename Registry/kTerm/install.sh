@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Installing kTerm (v2.6)..." #Hasn't Been Updated Since 2020, I'll Just Hardcode
 
 if [ -f /lib/ld-linux-armhf.so.3 ]; then

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Uninstalling GambatteK2..."
 
 rm -rf /mnt/us/extensions/gambatte-k2

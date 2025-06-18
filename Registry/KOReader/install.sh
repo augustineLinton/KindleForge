@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 echo "[KindleForge] Installing KOReader..."
 
 # Script Credit Goes To MAREK!
