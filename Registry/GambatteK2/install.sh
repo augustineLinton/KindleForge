@@ -7,7 +7,7 @@ mkdir -p /mnt/us/kforge
 curl -L -o /mnt/us/kforge/GambatteK2.zip https://github.com/crazy-electron/gambatte-k2/releases/latest/download/gambatte-k2.zip
 unzip -q /mnt/us/kforge/GambatteK2.zip -d /mnt/us/kforge/
 mkdir -p /mnt/us/extensions/GambatteK2
-cp -r /mnt/us/kforge/GambatteK2/* /mnt/us/extensions/GambatteK2
+cp -r /mnt/us/kforge/gambatte-k2/* /mnt/us/extensions/GambatteK2
 
 # Scriptlets
 cp /mnt/us/extensions/GambatteK2/shortcut_gambatte-k2.sh /mnt/us/documents
