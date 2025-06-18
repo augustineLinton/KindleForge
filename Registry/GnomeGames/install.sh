@@ -3,6 +3,7 @@
 echo "[KindleForge] Installing GnomeGames..."
 
 # Download + Extract
+mkdir -p /mnt/us/kforge
 curl -L -o /mnt/us/kforge/GnomeGames.zip https://github.com/crazy-electron/GnomeGames4Kindle/releases/latest/download/gnomegames.zip 
 unzip -q /mnt/us/kforge/GnomeGames.zip -d /mnt/us/kforge/
 mkdir -p /mnt/us/extensions/GnomeGames
