@@ -4,7 +4,7 @@ echo "[KindleForge] Installing GambatteK2..."
 
 # Download + Extract
 mkdir -p /mnt/us/kforge
-curl -L -o /mnt/us/kforge/GambatteK2.zip https://github.com/crazy-electron/gambatte-k2/releases/download/latest/gambatte-k2.zip 
+curl -L -o /mnt/us/kforge/GambatteK2.zip https://github.com/crazy-electron/gambatte-k2/releases/latest/download/gambatte-k2.zip
 unzip -q /mnt/us/kforge/GambatteK2.zip -d /mnt/us/kforge/
 mkdir -p /mnt/us/extensions/GambatteK2
 cp -r /mnt/us/kforge/GambatteK2/* /mnt/us/extensions/GambatteK2
