@@ -34,10 +34,9 @@ fi
 
 #Copy To VAR/LOCAL/MESQUITE
 if [ -d "$SOURCE_DIR" ]; then
-    if [ -d "$TARGET_DIR" ]; then
-        rm -rf "$TARGET_DIR"
+    if [ ! -d "$TARGET_DIR" ]; then
+        cp -r "$SOURCE_DIR" "$TARGET_DIR"
     fi
-    cp -r "$SOURCE_DIR" "$TARGET_DIR"
 else
     exit 1
 fi
