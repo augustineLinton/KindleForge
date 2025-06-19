@@ -32,10 +32,22 @@ else
     /var/local/kmc/UtildSF
 fi
 
-#Copy To VAR/LOCAL/MESQUITE
+#Copy To VAR/LOCAL/MESQUITE, Preserving Packages.LIST
 if [ -d "$SOURCE_DIR" ]; then
-    if [ ! -d "$TARGET_DIR" ]; then
-        cp -r "$SOURCE_DIR" "$TARGET_DIR"
+    if [ -f "$TARGET_DIR/assets/packages.list" ]; then
+        cp "$TARGET_DIR/assets/packages.list" /tmp/packages.list.bak
+    fi
+
+    if [ -d "$TARGET_DIR" ]; then
+        rm -rf "$TARGET_DIR"
+    fi
+
+    cp -r "$SOURCE_DIR" "$TARGET_DIR"
+
+    if [ -f /tmp/packages.list.bak ]; then
+        mkdir -p "$TARGET_DIR/assets"
+        cp /tmp/packages.list.bak "$TARGET_DIR/assets/packages.list"
+        rm /tmp/packages.list.bak
     fi
 else
     exit 1
