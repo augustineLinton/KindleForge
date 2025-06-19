@@ -9,6 +9,8 @@ KindleForge Is A Persistent Appstore For Kindles Based On IllusionUtild.
 
 It Is Inspired By KPM.
 
+![KindleForge UI Example](https://github.com/user-attachments/assets/9cce14c7-6f16-49d6-aafc-7dbc4b685bb3)
+
 ## How Does It Work?
 
 - KindleForge Is Based On Illusion - It's A WAF (Essentially, A Web App)
@@ -33,6 +35,11 @@ Yes, Although Expect Styling/Scaling or UI Issues. The Functionality Of The App 
 
 - PLEASE Contribute To The Registry! It Would Be *Greatly* Appreciated.
 - Also, CSS & Scaling. It Is, In Fact, A Big Issue In Mesquite.
+
+# Contributors
+
+- Kurizu ([Crizmo](https://github.com/crizmo/))
+- Gingr ([Gingrspacecadet](https://github.com/gingrspacecadet))
 
 ## Notes
 
