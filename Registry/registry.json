@@ -28,5 +28,20 @@
         "name": "GambatteK2",
         "description": "Gameboy Emulator For Kindle",
         "author": "CrazyElectron"
+    },
+    {
+        "name": "KWordle",
+        "description": "Wordle For Kindles",
+        "author": "Kurizu"
+    },
+    {
+        "name": "KAnki",
+        "description": "Universal Language Learning App For Kindle",
+        "author": "Kurizu"
+    },
+    {
+        "name": "KindleKraft",
+        "description": "Minecraft Servers On Kindles (<=5.16.2.1.1)",
+        "author": "Penguins184"
     }
 ]
