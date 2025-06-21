@@ -38,5 +38,10 @@
         "name": "KAnki",
         "description": "Universal Language Learning App For Kindle",
         "author": "Kurizu"
+    },
+    {
+        "name": "KindleJS",
+        "description": "Run ES6 JS On Kindles",
+        "author": "Penguins184"
     }
 ]
