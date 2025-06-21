@@ -43,6 +43,6 @@ Yes, Although Expect Styling/Scaling or UI Issues. The Functionality Of The App 
 
 ## Notes
 
-- Tested Fully & Working On A PW3
+- Tested Fully & Working On A PW3, PW6
 - Made By Penguins184
 - Big Thanks To KPM!
