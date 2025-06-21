@@ -36,7 +36,7 @@ Yes, Although Expect Styling/Scaling or UI Issues. The Functionality Of The App 
 - PLEASE Contribute To The Registry! It Would Be *Greatly* Appreciated.
 - Also, CSS & Scaling. It Is, In Fact, A Big Issue In Mesquite.
 
-# Contributors
+## Contributors
 
 - Kurizu ([Crizmo](https://github.com/crizmo/))
 - Gingr ([Gingrspacecadet](https://github.com/gingrspacecadet))
