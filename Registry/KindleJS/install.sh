@@ -4,7 +4,7 @@ set -e
 echo "[KindleForge] Installing KindleJS..."
 
 mntroot rw
-curl -L -o /usr/bin/kindlejs ...
+curl -L -o /usr/bin/kindlejs https://github.com/polish-penguin-dev/KindleForge/raw/refs/heads/master/Registry/KindleJS/kindlejs
 chmod +x /usr/bin/kindlejs
 mntroot ro
 
