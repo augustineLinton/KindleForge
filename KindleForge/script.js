@@ -2,9 +2,10 @@
   KindleForge
   "Do not ask me what is here, for I have no idea" -penguins184
 
-  06/2025
+  07/2025
 */
 
+//Chromebar Functionality
 function update() {
   var chromebar = {
     "appId": "xyz.penguins184.kindleforge",
@@ -46,6 +47,7 @@ function update() {
   window.kindle.messaging.sendMessage("com.lab126.chromebar", "configureChrome", chromebar);
 };
 
+//Update Each Page Load
 window.kindle.appmgr.ongo = function(ctx) {
   update();
   window.kindle.messaging.receiveMessage("systemMenuItemSelected", function(type, id) {
@@ -59,6 +61,7 @@ window.kindle.appmgr.ongo = function(ctx) {
 var apps = null;
 var lock = false;
 
+//Fetch Wrapper
 function _fetch(url, cb) {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
@@ -77,6 +80,7 @@ function _fetch(url, cb) {
   xhr.send();
 }
 
+//Fetch File Contents Through Iframe
 function _file(url) {
   return new Promise(function (resolve) {
     var iframe = document.createElement("iframe");
@@ -101,6 +105,7 @@ function _file(url) {
   });
 }
 
+//Show Application Cards (Based On If Installed/Uninstalled)
 function init() {
   _file("file:///var/local/mesquite/KindleForge/assets/packages.list").then(
     function (data) {
@@ -112,6 +117,7 @@ function init() {
   );
 }
 
+//Create And Show Application Cards, Apply Functionality
 function render(installed) {
   var icons = {
     download:
@@ -148,20 +154,6 @@ function render(installed) {
     return btn;
   }
 
-  function fetchDownloadCount(pkgName, cb) {
-    _fetch(
-      "https://kindleforge.gingr.workers.dev/count?name=" + encodeURIComponent(pkgName),
-      function (resp) {
-        try {
-          var data = JSON.parse(resp);
-          cb(data.count || 0);
-        } catch (e) {
-          cb(0);
-        }
-      }
-    );
-  }
-
   for (var i = 0; i < apps.length; i++) {
     var app = apps[i];
     var isInst = installed.indexOf(app.name) !== -1;
@@ -190,16 +182,6 @@ function render(installed) {
     pDesc.className = "description";
     pDesc.textContent = app.description;
 
-    /*
-      var pCount = document.createElement("p");
-      pCount.className = "download-count";
-      pCount.textContent = "Downloads: ...";
-      card.appendChild(pCount);
-    fetchDownloadCount(app.name, function(count) {
-      pCount.textContent = "Downloads: " + count;
-    });
-    */
-
     var btn = makeButton(app.name, isInst);
 
     card.appendChild(header);
@@ -218,6 +200,7 @@ function render(installed) {
 
         btn.disabled = true;
 
+        //If Another Install/Uninstall Is Happening (No Conflicts)
         if (lock) {
           btn.innerHTML =
             icons.x +
@@ -236,6 +219,7 @@ function render(installed) {
         }
         lock = true;
 
+        //Assemble Script URL, Run With Utild
         var action = wasInst ? "uninstall" : "install";
         var scriptUrl =
           "https://raw.githubusercontent.com/polish-penguin-dev/KindleForge/refs/heads/master/Registry/" +
@@ -256,6 +240,7 @@ function render(installed) {
           "curl " + scriptUrl + " | sh"
         );
 
+        //Poll Every 500Ms To See If Installed, Time Out After 30s
         var start = Date.now();
         var pollId = setInterval(function () {
           if (Date.now() - start >= 30000) {
@@ -281,7 +266,7 @@ function render(installed) {
             if ((!wasInst && present) || (wasInst && !present)) {
               clearInterval(pollId);
               lock = false;
-              window.location.reload();
+              window.location.reload(); //Init() Will Say 'Installed' In UI
             }
           });
         }, 500);

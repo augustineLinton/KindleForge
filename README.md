@@ -1,48 +1,45 @@
 # KindleForge 🔠
 
-> [!NOTE]
-> Do Not Attempt To Use KindleForge At This Point! It Is Under Development.
+> [!TIP]
+> KindleForge is nearing completion!
 
-## What's This?
+## What’s this?
 
-KindleForge Is A Persistent Appstore For Kindles Based On IllusionUtild.
+KindleForge is a persistent app store for Kindles based on IllusionUtild. It is inspired by KPM.
 
-It Is Inspired By KPM.
+![KindleForge UI example](https://github.com/user-attachments/assets/9cce14c7-6f16-49d6-aafc-7dbc4b685bb3)
 
-![KindleForge UI Example](https://github.com/user-attachments/assets/9cce14c7-6f16-49d6-aafc-7dbc4b685bb3)
+## How does it work?
 
-## How Does It Work?
+- KindleForge is based on Illusion – it’s a WAF (essentially, a web app).  
+- Apps are grabbed from `REGISTRY.JSON` and loaded.  
+- Uninstall/install is determined from a local `PACKAGES.LIST`.  
+- When you add or remove a package, the relevant script is run (through [Utild](https://github.com/KindleModding/utild)).  
+- Installation success is determined by polling – checking every 500 ms if the app was added or removed from `PACKAGES.LIST`.  
+- If nothing changes within 30 s, the operation fails (assumed premature exit).  
+- (This is because there is no Mesquite `lipc-get-prop` equivalent; only events, which Utild doesn’t implement.)
 
-- KindleForge Is Based On Illusion - It's A WAF (Essentially, A Web App)
-- Apps Grabbed From `REGISTRY.JSON` And Loaded
-- Uninstall/Install Determined From A Local `PACKAGES.LIST`
-- When You Add/Remove A Package, The Relevant Script Is Run (Through [UTILD](https://github.com/KindleModding/utild))
-- Installation Success Is Determined By Polling - Checking Every 500Ms If The App Was Added/Removed From `PACKAGES.LIST`.
-- Nothing? Fail After 30s - Assumed Premature Exit
-- (This Is Because There Is No Mesquite `lipc-get-prop` Equivalent. Only Events - Which Utild Doesn't Implement).
+## Can I get it?
 
-## Can I Get It?
+Yes, although expect styling, scaling, or UI issues. The functionality of the app should be complete; only registry entries may be missing.
 
-Yes, Although Expect Styling/Scaling or UI Issues. The Functionality Of The App Should Be Complete, Only Maybe Registry Issues.
-
-1. Ensure You Are On The Latest Universal Hotfix (Scriptlets). JB Support Out Of WinterBreak For Illusion Is Not Guaranteed.
-2. Get `KindleForge/` And KindleForge.sh
-3. Put Them Into Your `documents/` Folder
-4. Run The Scriptlet! (You May Have To Tap/Double Tap)
-
+1. Ensure you are on the latest Universal Hotfix (scriptlets). Jailbreak support out of winter break for Illusion is not guaranteed.  
+2. Get the `KindleForge/` folder and the `KindleForge.sh` script.  
+3. Put them into your `documents/` folder.  
+4. Run the scriptlet! (You may have to tap or double-tap.)
 
 ## Contributions
 
-- PLEASE Contribute To The Registry! It Would Be *Greatly* Appreciated.
-- Also, CSS & Scaling. It Is, In Fact, A Big Issue In Mesquite.
+- Please contribute to the registry! It would be *greatly* appreciated.  
+- CSS and scaling help is also needed—these remain significant issues on Mesquite.
 
 ## Contributors
 
-- Kurizu ([Crizmo](https://github.com/crizmo/))
+- Kurizu ([Crizmo](https://github.com/crizmo/))  
 - Gingr ([Gingrspacecadet](https://github.com/gingrspacecadet))
 
 ## Notes
 
-- Tested Fully & Working On A PW3, PW6
-- Made By Penguins184
-- Big Thanks To KPM!
+- Tested fully and working on a PW3 and PW6.  
+- Made by Penguins184.  
+- Big thanks to KPM!
