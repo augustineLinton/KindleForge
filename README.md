@@ -1,11 +1,13 @@
 # KindleForge 🔠
 
 > [!TIP]
-> KindleForge is nearing completion!
+> KindleForge is nearing completion! Thanks for all the help!
 
 ## What’s this?
 
-KindleForge is a persistent app store for Kindles based on IllusionUtild. It is inspired by KPM.
+KindleForge is a persistent app store for Kindles based on IllusionUtild.
+
+It is inspired by KPM.
 
 ![KindleForge UI example](https://github.com/user-attachments/assets/9cce14c7-6f16-49d6-aafc-7dbc4b685bb3)
 
@@ -23,7 +25,7 @@ KindleForge is a persistent app store for Kindles based on IllusionUtild. It is 
 
 Yes, although expect styling, scaling, or UI issues. The functionality of the app should be complete; only registry entries may be missing.
 
-1. Ensure you are on the latest Universal Hotfix (scriptlets). Jailbreak support out of winter break for Illusion is not guaranteed.  
+1. Ensure you are on the latest Universal Hotfix (scriptlets). Jailbreak support out of WinterBreak for Illusion is not guaranteed.  
 2. Get the `KindleForge/` folder and the `KindleForge.sh` script.  
 3. Put them into your `documents/` folder.  
 4. Run the scriptlet! (You may have to tap or double-tap.)
