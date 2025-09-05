@@ -1,7 +1,7 @@
 # KindleForge 🔠
 
-> [!TIP]
-> KindleForge is nearing completion! Thanks for all the help!
+> [!IMPORTANT]
+> This edition of KindleForge (2) is now **discontinued** in favour of a KPM (Kindle Package Manager)-Based one to be bundled with UJ (The next jailbreak). Feel free to use this, as it should work, but this repository may be moved to my personal account (polish-penguin-dev) at any time in favour of the new project. Thanks for the help!
 
 ## What’s this?
 
