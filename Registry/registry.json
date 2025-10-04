@@ -2,17 +2,17 @@
     {
         "name": "KOReader",
         "description": "An E-Book Reader Application",
-        "author": "Hans-Werner"
+        "author": "Augustine Linton"
     },
     {
         "name": "kTerm",
         "description": "GTK+ Terminal Emulator for Kindle",
-        "author": "Bartek Fabiszewski"
+        "author": "Augustine Linton"
     },
     {
         "name": "KindleFetch",
         "description": "Download Books From Anna's Archive",
-        "author": "Justrals"
+        "author": "Augustine Linton"
     },
     {
         "name": "KPM",
